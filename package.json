@@ -1,0 +1,19 @@
+{
+  "name": "mango",
+  "version": "1.0.0",
+  "description": "MERN App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccrowley96/Mango.git"
+  },
+  "author": "Cory Crowley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ccrowley96/Mango/issues"
+  },
+  "homepage": "https://github.com/ccrowley96/Mango#readme"
+}
