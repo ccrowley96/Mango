@@ -19,6 +19,8 @@
   "homepage": "https://github.com/ccrowley96/Mango#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.5.1"
   }
 }
