@@ -4,7 +4,10 @@ var cors = require("cors");
 var cookieParser = require("cookie-parser");
 const express = require('express')
 const path = require('path');
+const passport = require("passport");
 const { mongoose } = require("./db/mongoose.js");
+
+const users = require("./routes/api/users");
 
 let port = process.env.PORT || 8888;
 
@@ -20,6 +23,13 @@ app.use(express.static(__dirname + "/public"))
 	.use(cookieParser());
 
 app.use("/api", api);
+
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
+// Routes
+app.use("/api/users", users);
 
 if (process.env.NODE_ENV === 'PROD') {
 	// Serve any static files
