@@ -1,26 +1,21 @@
 {
   "name": "mango",
   "version": "1.0.0",
-  "description": "MERN App",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js"
+    "start": "cd server && npm run start:prod",
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ccrowley96/Mango.git"
   },
-  "author": "Cory Crowley",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ccrowley96/Mango/issues"
   },
-  "homepage": "https://github.com/ccrowley96/Mango#readme",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "dotenv": "^7.0.0",
-    "express": "^4.16.4",
-    "mongoose": "^5.5.1"
-  }
+  "homepage": "https://github.com/ccrowley96/Mango#readme"
 }
