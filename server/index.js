@@ -4,10 +4,12 @@ var cors = require("cors");
 var cookieParser = require("cookie-parser");
 const express = require('express')
 const path = require('path');
+const { mongoose } = require("./db/mongoose.js");
 
 let port = process.env.PORT || 8888;
 
 const app = express();
+
 
 //Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
