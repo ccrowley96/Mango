@@ -2,7 +2,7 @@
 const api = require("./api/api.js");
 const bodyParser = require('body-parser');
 const express = require('express')
-const { mongoose } = require("./db/mongoose.js");
+const mongoose  = require('mongoose');
 const path = require('path');
 const passport = require("passport");
 const mangoPassport = require("./config/passport");
@@ -21,6 +21,11 @@ app.use(passport.initialize());
 
 // Passport config -- search for user matching JWT payload
 mangoPassport(passport);
+
+// Connect to DB
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true})
+    .then(() => console.log("MongoDB successfully connected"))
+    .catch(err => console.log(err));
 
 app.use("/api", api);
 
