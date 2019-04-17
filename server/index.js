@@ -1,43 +1,36 @@
+// Require Dependencies
 const api = require("./api/api.js");
 const bodyParser = require('body-parser');
-var cors = require("cors");
-var cookieParser = require("cookie-parser");
 const express = require('express')
+const { mongoose } = require("./db/mongoose.js");
 const path = require('path');
 const passport = require("passport");
-const { mongoose } = require("./db/mongoose.js");
-
-const users = require("./routes/api/users");
+const mangoPassport = require("./config/passport");
 
 let port = process.env.PORT || 8888;
 
+// Create App
 const app = express();
 
-
-//Body Parser Middleware
+// Body Parser Middleware (JSON)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static(__dirname + "/public"))
-	.use(cors())
-	.use(cookieParser());
-
-app.use("/api", api);
-
 // Passport middleware
 app.use(passport.initialize());
-// Passport config
-require("./config/passport")(passport);
-// Routes
-app.use("/api/users", users);
+
+// Passport config -- search for user matching JWT payload
+mangoPassport(passport);
+
+app.use("/api", api);
 
 if (process.env.NODE_ENV === 'PROD') {
 	// Serve any static files
 	app.use(express.static(path.join(__dirname, '/../client/build')));
-	console.log('PATH: ', path.join(__dirname, '/../client/build'))
+
 	// Handle React routing, return all requests to React app
 	app.get('*', function(req, res) {
-	  res.sendFile(path.join(__dirname, './../frontend/build', 'index.html'));
+	  res.sendFile(path.join(__dirname, '/../client/build', 'index.html'));
 	});
 }
 
